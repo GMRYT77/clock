@@ -171,7 +171,7 @@ const Home = ({ objectData }) => {
         </div>
         <div
           id="timeDiv"
-          className={`${themes[currTheme]}  text-white flex flex-col gap-1 min-h-[400px] min-w-[300px] my-[160px] items-center justify-center text-center`}
+          className={`${themes[currTheme]}  text-white text-[40px] flex flex-col gap-1 min-h-[400px] min-w-[300px] my-[160px] items-center justify-center text-center`}
         >
           <div className="flex gap-3 items-end">
             <span id="hr_id">00</span>
@@ -231,10 +231,9 @@ const Home = ({ objectData }) => {
             id="range_id"
             className="range"
             type="range"
-            min={20}
+            min={0}
             max={100}
             step={1}
-            aria-valuenow="10"
             onMouseMove={dataRange}
           />
           <output id="rangevalue1">{size}</output>
