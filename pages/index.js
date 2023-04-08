@@ -52,6 +52,8 @@ const Home = ({ objectData }) => {
   const [sec, setSec] = useState(0);
   const [min, setMin] = useState(0);
   const [hr, setHr] = useState(0);
+  const [offset, setoffset] = useState(0);
+  const [name, setname] = useState("");
 
   useEffect(() => {
     const secDiv = document.getElementById("sec_id");
@@ -108,7 +110,6 @@ const Home = ({ objectData }) => {
   });
 
   useEffect(() => {
-    console.log(objectData);
     const timeDiv = document.getElementById("timeDiv");
     const th = document.getElementsByClassName("theme");
 
@@ -239,7 +240,11 @@ const Home = ({ objectData }) => {
           <output id="rangevalue1">{size}</output>
         </div>
       </div>
-      <ul className="cont flex flex-col gap-2">{}</ul>
+      <ul className="cont flex flex-col gap-2">
+        {objectData.map((e, i) => {
+          return <li key={i}>{e.name}</li>;
+        })}
+      </ul>
     </>
   );
 };
