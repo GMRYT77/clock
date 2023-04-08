@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AiFillSetting } from "react-icons/ai";
 
-const Home = ({ allTimeZone }) => {
+const Home = ({ objectData }) => {
   const themes = ["poiret", "monoton", "pady", "rubik", "sedwick"];
   const month = [
     "January",
@@ -52,8 +52,6 @@ const Home = ({ allTimeZone }) => {
   const [sec, setSec] = useState(0);
   const [min, setMin] = useState(0);
   const [hr, setHr] = useState(0);
-  const [day, setDay] = useState(0);
-  const [date, setDate] = useState(0);
 
   useEffect(() => {
     const secDiv = document.getElementById("sec_id");
@@ -110,9 +108,10 @@ const Home = ({ allTimeZone }) => {
   });
 
   useEffect(() => {
-    console.log(allTimeZone);
+    console.log(objectData);
     const timeDiv = document.getElementById("timeDiv");
     const th = document.getElementsByClassName("theme");
+
     for (let i = 0; i < th.length; i++) {
       th[i].addEventListener("click", (e) => {
         e.preventDefault();
@@ -196,10 +195,7 @@ const Home = ({ allTimeZone }) => {
         </div>
       </section>
       <section>
-        <div
-          onClick={() => setCurrTheme((e) => e + 1)}
-          className="relative cont min-h-[300px]"
-        >
+        <div id="f" className="relative cont min-h-[300px]">
           fjfj
         </div>
       </section>
@@ -243,19 +239,30 @@ const Home = ({ allTimeZone }) => {
           <output id="rangevalue1">{size}</output>
         </div>
       </div>
+      <ul className="cont flex flex-col gap-2">{}</ul>
     </>
   );
 };
 
-export const getServerSideProps = async (ctx) => {
-  const res = await fetch("http://worldtimeapi.org/api/timezone");
-  let allTimeZones = await res.json();
+// export const getStaticProps = async () => {
+//   const res = await fetch("/data/UTC.json");
+//   let allTimeZones = await res.json();
+
+//   return {
+//     props: {
+//       allTimeZone: allTimeZones.map((e) => e),
+//     },
+//   };
+// };
+import fsPromises from "fs/promises";
+import path from "path";
+export async function getStaticProps() {
+  const filePath = path.join(process.cwd(), "data.json");
+  const jsonData = await fsPromises.readFile(filePath);
+  const objectData = JSON.parse(jsonData);
 
   return {
-    props: {
-      allTimeZone: allTimeZones.map((e) => e),
-    },
+    props: { objectData },
   };
-};
-
+}
 export default Home;
