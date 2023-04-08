@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    box-sizing: border-box;
+  }
   .sec {
     width: 100%;
     position: relative;

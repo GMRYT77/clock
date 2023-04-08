@@ -128,15 +128,15 @@ const Home = ({ objectData }) => {
 
   const openSettings = () => {
     const setting = document.getElementById("settings_id");
-    setting.classList.remove("translate-x-[150%]");
-    setting.classList.add("translate-x-0");
+    setting.classList.remove("-translate-y-[150%]");
+    setting.classList.add("translate-y-0");
   };
 
   // Settings
   const closeSettings = () => {
     const setting = document.getElementById("settings_id");
-    setting.classList.add("translate-x-[150%]");
-    setting.classList.remove("translate-x-0");
+    setting.classList.add("-translate-y-[150%]");
+    setting.classList.remove("translate-y-0");
   };
   const [size, setSize] = useState(40);
 
@@ -150,7 +150,7 @@ const Home = ({ objectData }) => {
   };
 
   return (
-    <>
+    <main className="relative w-full h-fit">
       <section className="sec h-screen items-center flex-col">
         <Head>
           <title>Clock</title>
@@ -203,7 +203,7 @@ const Home = ({ objectData }) => {
       {/* SETTINGS */}
       <div
         id="settings_id"
-        className="absolute flex flex-col transition top-0 right-2 translate-x-[150%] max-w-[300px] w-full h-fit p-3 border-[1px] border-[#a1a1a188] rounded-md m-3 bg-[#1e1e1e] z-20"
+        className="absolute flex flex-col transition top-0 right-2 -translate-y-[150%] max-w-[300px] w-full h-fit p-3 border-[1px] border-[#a1a1a188] rounded-md m-3 bg-[#1e1e1e] z-20"
       >
         <div className="absolute top-3 right-3 text-[1.6rem] cursor-pointer">
           <RxCross2 id="crossBtn" onClick={closeSettings} />
@@ -244,7 +244,7 @@ const Home = ({ objectData }) => {
           return <li key={i}>{e.name}</li>;
         })}
       </ul>
-    </>
+    </main>
   );
 };
 
